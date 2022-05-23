@@ -1,0 +1,87 @@
+body {
+  background-color: beige;
+}
+
+h1 {
+  font-size: 29px;
+  font-family: 'Consolas', monospace;
+  color: darkslategray;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: 'Lucidatypewriter', monospace;
+  color: rgb(77, 33, 3);
+}
+
+h3 {
+  font-family: 'Lucidatypewriter', monospace;
+  color: saddlebrown;
+}
+
+p {
+  color: darkslategray;
+}
+
+label {
+  background-color: ivory;
+  color: saddlebrown;
+}
+
+.column {
+    float: left;
+  }
+  
+  .left {
+    width: 25%;
+  }
+
+  .right {
+    width: 25%;
+    padding-left: 1px;
+  }
+  
+  .middle {
+    width: 40%;
+  }
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+ul {
+    list-style-type: none;
+    padding-left: 3;
+  }
+
+.Fixed
+{
+    position: fixed;
+    top: 330px;
+}
+
+line {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding-left: 3px;
+}
+
+.icon {
+  vertical-align: middle;
+  height: 26px;
+  width: 26px;
+}
+
+.main-nav li{
+  display:inline;
+  padding-right: 9px;
+}
+
+.error {
+  color: red;
+}
