@@ -1,0 +1,20 @@
+html
+	head
+		title Inventory Page
+		link(rel='stylesheet' href='/style.css')
+body
+	include ../partials/loggedInHeader
+
+	div#main
+
+		if errormessage
+			ul.error #{errormessage}
+
+		include ../pages/createItem
+		br
+
+	div#history 
+		h3  List of Inventory Items: 
+		each item in items
+			a(href="/item/" + item._id) #{"SKU: "+ item.sku+ " Name: " + item.name + " Location: " + item.warehouse + " Qty: " + item.quantity + " Category: " + item.category + "Modifier： " + item.modifier}
+			br 

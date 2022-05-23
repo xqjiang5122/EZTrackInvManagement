@@ -1,0 +1,21 @@
+html
+    head
+        title Item Page
+        link(rel='stylesheet' href='/style.css')
+body
+    include ../partials/loggedInHeader
+
+    div#main
+        include ../pages/editItem
+        
+    
+    div#delete
+        form(action='/deleteItem/'+item._id method='post')
+            button(type='submit') Delete
+
+    div#warehouses
+        h3 Warehouses store this item:
+        each wh in warehouses
+            a(href="/warehouses/" + wh._id) #{" Name: " + wh.name + " Code: " + wh.code + " Capacity: " + wh.capacity}
+            br
+    

@@ -1,0 +1,13 @@
+div#header
+	ul.main-nav
+		li
+			a(href="/") Home
+		if session.loggedin
+			li Hello #{session.username}!  
+		li
+			a(href="/inventory/") Inventory
+		li
+			a(href="/warehouses/") Warehouse
+		if session.loggedin
+			li 
+				a(href="/logout") Logout

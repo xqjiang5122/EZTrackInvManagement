@@ -1,0 +1,26 @@
+html
+	head
+		title Edit Warehouse Page
+		link(rel='stylesheet' href='/style.css')
+body
+	
+	form(action='/editWarehouse/'+warehouse._id method='post')
+
+		h2 Edit item:             
+		h3 
+			| Name: 
+			input(type="text" name='whsName' required='' value = warehouse.name size="30")
+		h3 
+			| Location: 
+			input(type="text" name='whsLocation' value = warehouse.location size="60")
+		h3 
+			| Code: 
+			input(type="text" name='whsCode' value = warehouse.code size="3")
+		h3 
+			| Capacity: 
+			input(type="text" name='whsCapacity' value = warehouse.capacity size="10")          
+	
+		button(type='submit') Update
+
+		if message
+			ul.error #{message}

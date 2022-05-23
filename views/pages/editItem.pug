@@ -1,0 +1,29 @@
+html
+	head
+		title Edit Item Page
+		link(rel='stylesheet' href='/style.css')
+body
+	
+	form(action='/editItem/'+item._id method='post')
+
+		h2 Edit item:             
+		h3 
+			| Name: 
+			input(type="text" name='itemName' required='' value = item.name size="30")
+		h3 
+			| Warehouse: 
+			input(type="text" name='itemLocation' value = item.warehouse size="30")
+		h3 
+			| SKU: 
+			input(type="text" name='itemSKU' value = item.sku size="12")
+		h3 
+			| Quantity: 
+			input(type="text" name='itemQty' value = item.quantity size="10")
+		h3 
+			| Category: 
+			input(type="text" name='itemCategory' value = item.category size="15")            
+	
+		button(type='submit') Update
+
+		if message
+			ul.error #{message}

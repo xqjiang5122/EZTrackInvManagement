@@ -1,0 +1,20 @@
+html
+	head
+		title Warehouse Page
+		link(rel='stylesheet' href='/style.css')
+body
+	include ../partials/loggedInHeader
+
+	div#main
+
+		if errormessage
+			ul.error #{errormessage}
+
+		include ../pages/addWarehouse
+		br
+
+	div#history 
+		h3  List of Warehouses: 
+		each warehouse in warehouses
+			a(href="/warehouse/" + warehouse._id) #{"Name: " + warehouse.name + " Code: " + warehouse.code + " Capacity: " + warehouse.capacity}
+			br 

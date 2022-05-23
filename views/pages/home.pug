@@ -1,0 +1,21 @@
+html
+	head
+		title EZTrack Home Page
+		link(rel='stylesheet' href='/style.css')
+body
+	include ../partials/header
+
+	div#main
+		h1 Welcome to the EZTrack Inventory Management System!
+		br
+
+	form(action='/login' method='post') 
+		h3 
+			| User Name: 
+			input(type='text' name='username' required='')
+		h3 
+			| Password:
+			input(type='password' name='password' required='')
+		
+		button(type='submit') Login		
+	include ../partials/footer 
