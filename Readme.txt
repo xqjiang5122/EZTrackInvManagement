@@ -10,6 +10,7 @@ Basic CRUD Functionality. The webpage allows user to:
 
 Feature implemented:
   - Ability to create warehouses/locations and assign inventory to specific locations
+  - User are able to view the list of items, and for each item which warehouse(s) store this item, and for each warehouse, which items it stores
 
 To be improved in the future:
   - Add the function to sort the list of items/warehouses by time of modification,
