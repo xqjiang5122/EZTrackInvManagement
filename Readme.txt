@@ -1,55 +1,71 @@
-Assignment 4
-Name: Xiangqiu Jiang
-ID: 101049311
+Created by: Xiangqiu Jiang
+
+Requirements met:
+
+Basic CRUD Functionality. The webpage allows user to:
+  - Create inventory items
+  - Edit Them
+  - Delete Them
+  - View a list of them
+
+Feature implemented:
+  - Ability to create warehouses/locations and assign inventory to specific locations
+
 
 Instruction: - enter in the terminal: npm run db-init
              - enter in the terminal: npm run dev
 
-
-Supported route
+Supported route:
 
 app.use(exposeSession);
 app.get("/", displayHomePage);
-app.get("/users", getUsers);
-app.get("/users/:uid", sendSingleUser);
-app.post("/profile/:uid", updateUserPrivacy);
 app.post("/login", login);
 app.get("/logout", logout);
 app.get("/register", displayRegisterPage);
 app.post("/register", register);
-app.get("/profile/:uid", auth, displayProfilePage);
-app.get("/orderForm/:uid", auth, displayOrderPage);
-app.post("/orders",submitOrder);
-app.get("/orders/:orderID", getOrder);
+app.post("/addWarehouse/", addWarehouse);
+app.get("/warehouses/", displayWhPage);
+app.post("/createItem/", createItem);
+app.get("/inventory/", displayInvPage);
+app.get("/item/:uid", editItemPage);
+app.post("/editItem/:uid", editItem);
+app.post("/deleteItem/:uid", deleteItem);
+app.get("/warehouse/:uid", editWhPage);
+app.post("/editWarehouse/:uid", editWarehouse);
+app.post("/deleteWarehouse/:uid", deleteWarehouse);
 
 Page details:
 
 - Navigation header
     - To be included in all pages (pug)
     - Changes depending on current session state (login vs. logout)
-        - Client is logged in?  -> Home / Users / Order / Profile / (A method for logout)
-        - Client is not logged? -> Home / Users / Registration / (A method for login)
-    - What happens when a client requests the "/order" or "/profile" page but hasn't logged in?
+        - Client is logged in?  -> Home / Inventory / Warehouse / Logout
+        - Client is not logged? -> Home / Register
 - User Registration
-    - Provide a registration form, user should provide username and password to create account
-    - New profiles' privacy default is "public"
-    - Duplicate usernames are not allowed
-    - Success -> Log user in (save session data) & redirect to user profile page
-    - Failure -> Display error message & do not redirect
-- User directory
-    - Query the users collection, display results in html page, allow 'name' query parameter
-    - Only 'public' profiles should match the query
-    - Query should be case insensitive, eg. users?name="m" should show "madaline", "merrill" and "leoma"
-    - Private users should not be part of results
-- User profile page
-    - Private profiles are only visible to owner
-    - Public profiles are visible to all users
-    - Users viewing own profile should be able to change privacy setting
-- Order summary page
-    - Displays order information
-    - Visible if user that placed order is public
-    - Visible if user is viewing it's own order
-- Order Form and Submission
-    - Only viewable for logged in users
-    - Allows user to send order to server
-    - Server should store orders in database
+    - Provide a registration form, user should provide username and password to 
+- Inventory summary page
+    - Provides a form for user to create a new item
+    - User need to create a warehouse first before assigning an item to that warehouse
+    - Item name and SKU are unique combination
+    - Item name and location are unique combination
+    - Listed all items being created, each item is linked to it's detail page
+- Inventory detail page
+    - Allows the user to modify the information for the selected item
+    - Listed all warehouses that stores the item
+- Warehouse summary page
+    - Provides a form for user to create a new warehouse
+    - Warehouse name, location and code should be unique
+    - Listed all warehouses being created, each warehouse is linked to it's detail page
+- Warehouse detail page
+    - Allows the user to modify the information for the selected warehouse
+    - Listed all items stored in the selected warehouse
+
+Requirements met:
+Basic CRUD Functionality. The webpage allows user to:
+  - Create inventory items
+  - Edit Them
+  - Delete Them
+  - View a list of them
+
+Feature implemented:
+  - Ability to create warehouses/locations and assign inventory to specific locations
