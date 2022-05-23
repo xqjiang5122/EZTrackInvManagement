@@ -40,6 +40,9 @@ Page details:
     - To be included in all pages (pug)
     - Changes depending on current session state (login vs. logout)
         - Client is logged in?  -> Home / Inventory / Warehouse / Logout
+        - Pre-registered admin account: 
+          username: admin
+          password: admin
         - Client is not logged? -> Home / Register
 - User Registration
     - Provide a registration form, user should provide username and password to 
