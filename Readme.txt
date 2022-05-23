@@ -15,6 +15,7 @@ Feature implemented:
 To be improved in the future:
   - Add the function to sort the list of items/warehouses by time of modification,
     or by alphabatical order of selecting parameters: SKU, Code, Name, etc.
+  - User authentication can be added to track the creator and modifier of the entries
 
 
 Instruction: - enter in the terminal: npm run db-init
