@@ -3,7 +3,7 @@ html
         title Warehouse Page
         link(rel='stylesheet' href='/style.css')
 body
-    include ../partials/loggedInHeader
+    include ../partials/header
 
     div#main
         include ../pages/editWarehouse
@@ -16,6 +16,6 @@ body
     div#items
         h3 Items stored in this warehouse:
         each item in items
-            a(href="/item/" + item._id) #{"SKU: "+ item.sku+ " Name: " + item.name + " Location: " + item.warehouse + " Qty: " + item.quantity + " Category: " + item.category + "Modifier： " + item.modifier}
+            a(href="/item/" + item._id) #{"SKU: "+ item.sku+ " Name: " + item.name + " Location: " + item.warehouse + " Qty: " + item.quantity + " Category: " + item.category}
             br
     

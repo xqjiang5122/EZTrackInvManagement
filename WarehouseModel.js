@@ -34,14 +34,6 @@ let warehouseSchema = Schema({
     occupied:{
         type:Number,
         required:true
-    },
-    modifier:{
-        type:String,
-        required:true,
-        minlength: 1,
-		maxlength: 30,
-		match: /[A-Za-z]+/,
-		trim: true
     }
 
 });

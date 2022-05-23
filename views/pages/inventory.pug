@@ -3,7 +3,7 @@ html
 		title Inventory Page
 		link(rel='stylesheet' href='/style.css')
 body
-	include ../partials/loggedInHeader
+	include ../partials/header
 
 	div#main
 
@@ -16,5 +16,5 @@ body
 	div#history 
 		h3  List of Inventory Items: 
 		each item in items
-			a(href="/item/" + item._id) #{"SKU: "+ item.sku+ " Name: " + item.name + " Location: " + item.warehouse + " Qty: " + item.quantity + " Category: " + item.category + "Modifier： " + item.modifier}
+			a(href="/item/" + item._id) #{"SKU: "+ item.sku+ " Name: " + item.name + " Location: " + item.warehouse + " Qty: " + item.quantity + " Category: " + item.category}
 			br 

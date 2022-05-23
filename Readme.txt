@@ -11,18 +11,17 @@ Basic CRUD Functionality. The webpage allows user to:
 Feature implemented:
   - Ability to create warehouses/locations and assign inventory to specific locations
 
+To be improved in the future:
+  - Add the function to sort the list of items/warehouses by time of modification,
+    or by alphabatical order of selecting parameters: SKU, Code, Name, etc.
+
 
 Instruction: - enter in the terminal: npm run db-init
              - enter in the terminal: npm run dev
 
 Supported route:
 
-app.use(exposeSession);
 app.get("/", displayHomePage);
-app.post("/login", login);
-app.get("/logout", logout);
-app.get("/register", displayRegisterPage);
-app.post("/register", register);
 app.post("/addWarehouse/", addWarehouse);
 app.get("/warehouses/", displayWhPage);
 app.post("/createItem/", createItem);
@@ -38,14 +37,7 @@ Page details:
 
 - Navigation header
     - To be included in all pages (pug)
-    - Changes depending on current session state (login vs. logout)
-        - Client is logged in?  -> Home / Inventory / Warehouse / Logout
-        - Pre-registered admin account: 
-          username: admin
-          password: admin
-        - Client is not logged? -> Home / Register
-- User Registration
-    - Provide a registration form, user should provide username and password to 
+    - Shows the link to Inventory summary and Warehouse summary  page
 - Inventory summary page
     - Provides a form for user to create a new item
     - User need to create a warehouse first before assigning an item to that warehouse

@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const User = require("./UserModel");
 
+mongoose.connect(process.env['mongo'],{useNewUrlParser:true, useUnifiedTopology:true}).then(console.log('connected to the database'))
+
 let userNames = ["admin"];
 let users = [];
 
@@ -12,7 +14,6 @@ userNames.forEach(name =>{
 	users.push(u);
 });
 
-mongoose.connect('mongodb://localhost:27017/eztrack', {useNewUrlParser: true});
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
