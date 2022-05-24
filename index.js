@@ -26,17 +26,24 @@ app.use((req, res, next) => {
 })
 
 app.get("/", displayHomePage);
-app.post("/addWarehouse/", addWarehouse);
-app.get("/warehouses/", displayWhPage);
-app.post("/createItem/", createItem);
+//inventory summary page
 app.get("/inventory/", displayInvPage);
+app.post("/createItem/", createItem);
+//warehouse summary page
+app.get("/warehouses/", displayWhPage);
+app.post("/addWarehouse/", addWarehouse);
+//item detial page
 app.get("/item/:uid", editItemPage);
 app.post("/editItem/:uid", editItem);
 app.post("/deleteItem/:uid", deleteItem);
+//warehouse detail page
 app.get("/warehouse/:uid", editWhPage);
 app.post("/editWarehouse/:uid", editWarehouse);
 app.post("/deleteWarehouse/:uid", deleteWarehouse);
 
+//delete the warehouse from the database
+//redirect to warehouse summary page
+//all items currently stored in this warehouse will also got deleted
 function deleteWarehouse(req, res, next) {
     const targetId = req.params.uid;
 
@@ -80,7 +87,7 @@ function deleteWarehouse(req, res, next) {
         }
     });
 }
-
+//update info for a warehouse
 function editWarehouse(req, res, next) {
     const targetId = req.params.uid;
     const { whsName, whsLocation, whsCode, whsCapacity} = req.body;
@@ -127,7 +134,8 @@ function editWarehouse(req, res, next) {
         });
     })
 }
-
+//provides the form to update the warehouse, and list all items
+//currently stored in the warehouse
 function editWhPage(req, res, next) {
 
     const targetId = req.params.uid;
@@ -163,7 +171,8 @@ function editWhPage(req, res, next) {
         });
     });
 }
-
+//delete an item from the warehouse
+//refresh the list of warehouses that stores this item
 function deleteItem(req, res, next) {
     const targetId = req.params.uid;
 
@@ -197,7 +206,8 @@ function deleteItem(req, res, next) {
         }
     });
 }
-
+//update info for an item
+//warehouse must be created first before assignment any item to it
 function editItem(req, res, next) {
     const targetId = req.params.uid;
     const { itemName, itemLocation, itemSKU, itemQty, itemCategory } = req.body;
@@ -211,7 +221,6 @@ function editItem(req, res, next) {
     itemUpdate["category"] = itemCategory;
     //itemUpdate["modifier"] = req.session.username;
     console.log("update item: " + itemUpdate);
-
 
     Item.findByIdAndUpdate(targetId, itemUpdate, function (err, result) {
         if (err) {
@@ -262,21 +271,22 @@ function editItem(req, res, next) {
                     Warehouse.findOne({name: itemLocation}, function (err, result){ 
                         console.log("find the warehouse: " + result);
                         if (!result){
-                            res.status(200).render("pages/item.pug", { item: item, warehouses: whs, errormessage: "Warehouse does not exist yet. Please create the warehouse first." });
+                            console.log("get here");
+                            res.status(200).render("pages/item.pug", { item: item, warehouses: whs, message: "Warehouse does not exist yet. Please create the warehouse first." });
                             return;
                         }
-                    });                  
+                        console.log("warehouses found: " + result);
 
-                    console.log("warehouses found: " + result);
-
-                    res.setHeader('Content-Type', 'text/html');
-                    res.status(200).render("pages/item.pug", { item: item, warehouses: whs, message:"Item has been updated!" });
+                        res.setHeader('Content-Type', 'text/html');
+                        res.status(200).render("pages/item.pug", { item: item, warehouses: whs, message:"Item has been updated!" });
+                    });                 
                 });
             });
         });
     })
 }
-
+//provides the form to update the item, and list all warehouses
+//currently stored in the warehouse
 function editItemPage(req, res, next) {
 
     const targetId = req.params.uid;
@@ -332,7 +342,7 @@ function editItemPage(req, res, next) {
         });
     });
 }
-
+//inventory summary page, listing all items accrossing all warehouses
 function displayInvPage(req, res, next) {
 
     mongoose.connection.db.collection("items").find().toArray(function (err, result) {
@@ -351,7 +361,8 @@ function displayInvPage(req, res, next) {
     });
 
 }
-
+//create a new time.
+//warehouse must be created first before assignment any item to it
 function createItem(req, res, next) {
 
     mongoose.connection.db.collection("items").find().toArray(async function (err, result) {
@@ -404,7 +415,7 @@ function createItem(req, res, next) {
         });        
     });
 }
-
+//warehouse summary page, list all warehoues
 function displayWhPage(req, res, next) {
 
     mongoose.connection.db.collection("warehouses").find().toArray(function (err, result) {
@@ -422,7 +433,7 @@ function displayWhPage(req, res, next) {
         res.status(200).render("pages/warehouses.pug", { warehouses: warehouses});
     });
 }
-
+//create a warehouse
 function addWarehouse(req, res, next) {
 
     mongoose.connection.db.collection("warehouses").find().toArray(async function (err, result) {
